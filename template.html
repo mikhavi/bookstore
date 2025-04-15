@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Подключение к MSSQL</title>
+</head>
+<body>
+<h2>Форма подключения к MSSQL</h2>
+<form method="POST" action="/connect">
+    <label>Сервер (например: localhost):</label><br>
+    <input type="text" name="server" required><br><br>
+
+    <label>Порт (например: 1433):</label><br>
+    <input type="text" name="port" required><br><br>
+
+    <label>Пользователь:</label><br>
+    <input type="text" name="user" required><br><br>
+
+    <label>Пароль:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>База данных:</label><br>
+    <input type="text" name="database" required><br><br>
+
+    <label>Имя таблицы:</label><br>
+    <input type="text" name="table" required><br><br>
+
+    <button type="submit">Подключиться и вывести данные</button>
+</form>
+
+{{if .Message}}
+<p><strong>{{.Message}}</strong></p>
+{{end}}
+
+{{if .Rows}}
+<h3>Содержимое таблицы:</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr>
+        {{range .Columns}}
+        <th>{{.}}</th>
+        {{end}}
+    </tr>
+    </thead>
+    <tbody>
+    {{range .Rows}}
+    <tr>
+        {{range .}}
+        <td>{{.}}</td>
+        {{end}}
+    </tr>
+    {{end}}
+    </tbody>
+</table>
+{{end}}
+</body>
+</html>
