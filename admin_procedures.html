@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Выбор хранимой процедуры</title>
+</head>
+<body>
+<h2>Выберите хранимую процедуру для выполнения</h2>
+<p>{{.Message}}</p>
+
+<form method="POST" action="/execute_procedure">
+  <label>Выберите процедуру:</label>
+  <select name="procedureName" required>
+    <option value="GetExpensiveStockBooks">1. Выбрать из склада записи с количеством > 10 и ценой > 5000</option>
+    <option value="GetOrderDetails">2. Выбрать строки по коду заказа</option>
+    <option value="InsertPublishers">3. Вставить 4 новых строки в таблицу Издательства</option>
+    <option value="CalculateAdditionalPayment">4. Рассчитать сумму доплаты за книгу</option>
+  </select><br><br>
+
+  <label>Введите значение (если требуется):</label>
+  <input type="text" name="inputValue" placeholder="Введите значение (если нужно)"><br><br>
+
+  <button type="submit">Выполнить процедуру</button>
+</form>
+</body>
+</html>

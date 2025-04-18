@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Результаты выполнения процедуры</title>
+</head>
+<body>
+<h2>Результаты выполнения процедуры</h2>
+<p>{{.Message}}</p>
+
+{{if .ProcedureResult}}
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+  <tr>
+    {{range $key, $value := index .ProcedureResult 0}}
+    <th>{{ $key }}</th>
+    {{end}}
+  </tr>
+  </thead>
+  <tbody>
+  {{range .ProcedureResult}}
+  <tr>
+    {{range .}}
+    <td>{{.}}</td>
+    {{end}}
+  </tr>
+  {{end}}
+  </tbody>
+</table>
+{{else}}
+<p>Процедура не вернула данных.</p>
+{{end}}
+
+<a href="/admin_procedures">Назад к выбору процедур</a>
+</body>
+</html>

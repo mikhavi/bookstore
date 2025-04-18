@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Изменить таблицу</title>
+</head>
+<body>
+<h2>Редактирование данных таблицы: {{.TableName}}</h2>
+<p>{{.Message}}</p>
+<table border="1">
+    <thead>
+    <tr>
+        {{range $key, $value := index .Rows 0}}
+        <th>{{ $key }}</th>
+        {{end}}
+    </tr>
+    </thead>
+    <tbody>
+    {{range .Rows}}
+    <tr>
+        {{range .}}
+        <td>{{.}}</td>
+        {{end}}
+    </tr>
+    {{end}}
+    </tbody>
+</table>
+<form method="POST" action="/admin_edit">
+    <label>Название таблицы:</label>
+    <input type="text" name="tableName" value="{{.TableName}}" readonly><br><br>
+    <label>Уникальный столбец (например, Name):</label>
+    <input type="text" name="keyColumn" required><br><br>
+    <label>Значение уникального столбца:</label>
+    <input type="text" name="keyValue" required><br><br>
+    <label>Столбец для изменения:</label>
+    <input type="text" name="columnName" required><br><br>
+    <label>Новое значение:</label>
+    <input type="text" name="newValue" required><br><br>
+    <button type="submit">Сохранить изменения</button>
+</form>
+<h3>Удалить строку</h3>
+<form method="POST" action="/delete_row">
+    <label>Название таблицы:</label>
+    <input type="text" name="tableName" value="{{.TableName}}" readonly><br><br>
+    <label>Уникальный столбец (например, Name):</label>
+    <input type="text" name="keyColumn" required><br><br>
+    <label>Значение уникального столбца:</label>
+    <input type="text" name="keyValue" required><br><br>
+    <button type="submit">Удалить строку</button>
+</form>
+
+<h3>Создание новой строки в таблице: {{.TableName}}</h3>
+<p>{{.Message}}</p>
+<form method="POST" action="/add_row">
+    <input type="hidden" name="tableName" value="{{.TableName}}">
+    {{range .Columns}}
+    <label>{{.}}:</label>
+    <input type="text" name="values" required><br><br>
+    {{end}}
+    <button type="submit">Создать строку</button>
+</form>
+
+</body>
+</html>

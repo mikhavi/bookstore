@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Главная страница администратора</title>
+</head>
+<body>
+<h2>Добро пожаловать, администратор!</h2>
+<p>{{.Message}}</p>
+<!-- Кнопка для просмотра таблиц -->
+<form method="POST" action="/admin_view">
+  <label>Выберите таблицу:</label>
+  <select name="tableName">
+    {{range .Tables}}
+    <option value="{{.}}">{{.}}</option>
+    {{end}}
+  </select>
+  <button type="submit">Посмотреть таблицу</button>
+</form>
+<!-- Кнопка для изменения таблиц -->
+<form method="GET" action="/admin_edit">
+  <label>Выберите таблицу для изменения:</label>
+  <select name="tableName">
+    {{range .Tables}}
+    <option value="{{.}}">{{.}}</option>
+    {{end}}
+  </select>
+  <button type="submit">Изменить таблицу</button>
+</form>
+<h3>Отчеты</h3>
+<!-- Новая кнопка для просмотра отчетов -->
+<form method="GET" action="/admin_reports">
+  <button type="submit">Посмотреть отчет</button>
+</form>
+</body>
+</html>
+<h3>Запросы</h3>
+<form method="GET" action="/queries">
+  <button type="submit">Запросы</button>
+</form>
+<!-- New button for procedures -->
+<form method="GET" action="/admin_procedures">
+  <button type="submit">Процедуры</button>
+</form>

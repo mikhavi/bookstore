@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Просмотр отчетов</title>
+</head>
+<body>
+<h2>Доступные отчеты</h2>
+<p>{{.Message}}</p>
+
+<form method="GET" action="/view_user_report">
+    <label>Выберите отчет:</label>
+    <select name="reportType" required>
+        <option value="v_BooksByAuthor">Список книг по автору</option>
+        <option value="v_ClassifierBooksInWarehouse">Книги по разделу классификатора на складе</option>
+    </select><br><br>
+    <label>Введите значение:</label>
+    <input type="text" name="filterValue" required><br><br>
+    <button type="submit">Посмотреть отчет</button>
+</form>
+</body>
+</html>

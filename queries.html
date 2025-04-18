@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Выполнение запросов</title>
+</head>
+<body>
+<h2>Выполнение запросов</h2>
+<p>{{.Message}}</p>
+
+<form method="POST" action="/execute_query">
+  <label>Выберите запрос:</label>
+  <select name="queryType" required>
+    <option value="totalBookCost">Вычислить общую стоимость каждой из книг, хранящихся на складе с учетом экземпляров</option>
+    <option value="employeeSalesCount">Кол-во экземпляров книг, проданных каждым из сотрудников</option>
+    <option value="customersByLetter">Список заказчиков, фамилия которых начинается на букву «…»</option>
+    <option value="publishersByDate">В каких издательствах были изданы книги, проданные «I-го» числа</option>
+    <option value="booksSoldOnDate">Список книг, реализованных «j-го» числа по предварительному заказу</option>
+  </select><br><br>
+
+  <label>Введите значение (если требуется):</label>
+  <input type="text" name="inputValue" placeholder="Введите значение"><br><br>
+
+  <button type="submit">Выполнить запрос</button>
+</form>
+</body>
+</html>

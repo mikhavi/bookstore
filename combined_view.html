@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Главная страница пользователя</title>
+</head>
+<body>
+<h2>Добро пожаловать!</h2>
+<p>{{.Message}}</p>
+
+<!-- Existing functionality for tables -->
+<form method="POST" action="/view_table">
+  <label>Выберите таблицу:</label><br>
+  <select name="tableName" required>
+    {{range .Tables}}
+    <option value="{{.}}">{{.}}</option>
+    {{end}}
+  </select><br><br>
+  <button type="submit">Показать данные</button>
+</form>
+
+{{if .Rows}}
+<h3>Данные таблицы: {{.TableName}}</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+  <tr>
+    {{range $key, $value := index .Rows 0}}
+    <th>{{ $key }}</th>
+    {{end}}
+  </tr>
+  </thead>
+  <tbody>
+  {{range .Rows}}
+  <tr>
+    {{range .}}
+    <td>{{.}}</td>
+    {{end}}
+  </tr>
+  {{end}}
+  </tbody>
+</table>
+{{end}}
+
+<!-- New functionality for report viewing -->
+<h3>Просмотр отчетов</h3>
+<form method="GET" action="/user_reports">
+  <button type="submit">Посмотреть доступные отчеты</button>
+</form>
+</body>
+</html>
